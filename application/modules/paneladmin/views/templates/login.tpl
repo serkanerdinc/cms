@@ -66,17 +66,16 @@
                     </div>
 
                     <div class="login-form">
-                        <form id="form-login" action="#" class="form-horizontal ls_form">
+                        <form id="form-login" action="" class="form-horizontal ls_form" method="POST">
                             <div class="input-group ls-group-input">
-                                <input class="form-control" type="text" placeholder="Username">
+                                <input name="user" class="form-control" type="text" placeholder="Username">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             </div>
 
 
                             <div class="input-group ls-group-input">
 
-                                <input type="password" placeholder="Password" name="password"
-                                       class="form-control" value="">
+                                <input type="password" placeholder="Password" name="password" class="form-control" value="">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                             </div>
 
