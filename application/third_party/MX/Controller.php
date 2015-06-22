@@ -15,8 +15,8 @@ require dirname(__FILE__).'/Base.php';
  *
  * Install this file as application/third_party/MX/Controller.php
  *
- * @copyright	Copyright (c) 2011 Wiredesignz
- * @version 	5.4
+ * @copyright	Copyright (c) 2015 Wiredesignz
+ * @version 	5.5
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,28 +45,27 @@ class MX_Controller
 		$class = str_replace(CI::$APP->config->item('controller_suffix'), '', get_class($this));
 		log_message('debug', $class." MX_Controller Initialized");
 		Modules::$registry[strtolower($class)] = $this;	
-
+		
 		/* copy a loader instance and initialize */
 		$this->load = clone load_class('Loader');
 		$this->load->initialize($this);	
 		
 		/* autoload module items */
 		$this->load->_autoloader($this->autoload);
-		
-		$sayfaguvenlik = $this->uri->segment('1');
-		
-		if ($sayfaguvenlik=="admin")
-		{
-			if ($this->session->userdata("0b59c1eca2014d487be844846")!=TRUE)
-				{
-					redirect(base_url("admin/login"));
-				}
-		}
-		
-		
+
+        $sayfaguvenlik = $this->uri->segment('1');
+
+        if ($sayfaguvenlik=="paneladmin")
+        {
+            if ($this->session->userdata("0b59c1eca2014d487be844846")!=TRUE)
+            {
+                redirect(base_url("paneladmin/login"));
+            }
+        }
 	}
 	
-	public function __get($class) {
+	public function __get($class) 
+	{
 		return CI::$APP->$class;
 	}
 }
