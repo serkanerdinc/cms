@@ -23,7 +23,7 @@
 				
 				if($sonuc)
 				{
-					redirect(base_url('admin'));
+					redirect(base_url('paneladmin'));
 				}
 				else
 				{
