@@ -57,7 +57,7 @@ class MX_Controller
 
         if ($sayfaguvenlik=="paneladmin")
         {
-            if ($this->session->userdata("0b59c1eca2014d487be844846")!=TRUE)
+            if ($this->session->userdata("8f950a73d74a9e8fafdcebc961d7b14c")!=TRUE)
             {
                 redirect(base_url("paneladmin/login"));
             }
