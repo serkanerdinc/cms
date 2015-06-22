@@ -1,5 +1,5 @@
 <?php
-/*%%SmartyHeaderCode:2771555881c6e2f5545_33438113%%*/
+/*%%SmartyHeaderCode:26032558836598cb9f6_32652349%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -7,22 +7,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '91fea9a7b28f8b58e75c397fb59aabfc707ed95b' => 
     array (
       0 => 'C:/wamp/www/cms/application/modules/paneladmin/views/templates/login.tpl',
-      1 => 1434983531,
+      1 => 1434989751,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '2771555881c6e2f5545_33438113',
+  'nocache_hash' => '26032558836598cb9f6_32652349',
   'tpl_function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_55881c6e42dd97_26333243',
+  'unifunc' => 'content_55883659b90ef5_35153155',
   'cache_lifetime' => 120,
 ),true);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_55881c6e42dd97_26333243')) {
-function content_55881c6e42dd97_26333243 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_55883659b90ef5_35153155')) {
+function content_55883659b90ef5_35153155 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ function content_55881c6e42dd97_26333243 ($_smarty_tpl) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="SRKN">
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
@@ -42,7 +42,7 @@ function content_55881c6e42dd97_26333243 ($_smarty_tpl) {
     <!-- TODO: Add a favicon -->
     <link rel="shortcut icon" href="/admin/assets/images/ico/fab.ico">
 
-    <title>Fickle - Login</title>
+    <title>CMS Login Page</title>
 
     <!--Page loading plugin Start -->
     <link rel="stylesheet" href="/admin/assets/css/plugins/pace.css">
@@ -87,41 +87,25 @@ function content_55881c6e42dd97_26333243 ($_smarty_tpl) {
                             <i class="glyphicon glyphicon-user"></i>
 
                         </div>
-                        <h3>Identify Yourself</h3>
-                        <div class="social-btn-login">
-                            <ul>
-                                <li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-github"></i></a></li>
-                                <li><a href="javascript:void(0)"><i class="fa fa-bitbucket"></i></a></li>
-                            </ul>
-                            <!--<button class="btn ls-dark-btn rounded"><i class="fa fa-facebook"></i></button>
-                            <button class="btn ls-dark-btn rounded"><i class="fa fa-twitter"></i></button>
-                            <button class="btn ls-dark-btn rounded"><i class="fa fa-linkedin"></i></button>
-                            <button class="btn ls-dark-btn rounded"><i class="fa fa-google-plus"></i></button>
-                            <button class="btn ls-dark-btn rounded"><i class="fa fa-github"></i></button>
-                            <button class="btn ls-dark-btn rounded"><i class="fa fa-bitbucket"></i></button>-->
-                        </div>
+                        <h3>CMS Login Page</h3>
+
                     </div>
 
                     <div class="login-form">
-                        <form id="form-login" action="#" class="form-horizontal ls_form">
+                        <form id="form-login" action="" class="form-horizontal ls_form" method="POST">
                             <div class="input-group ls-group-input">
-                                <input class="form-control" type="text" placeholder="Username">
+                                <input name="user" class="form-control" type="text" placeholder="Username">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             </div>
 
 
                             <div class="input-group ls-group-input">
 
-                                <input type="password" placeholder="Password" name="password"
-                                       class="form-control" value="">
+                                <input type="password" placeholder="Password" name="password" class="form-control" value="">
                                 <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                             </div>
 
-                           
+
                             <div class="input-group ls-group-input login-btn-box">
                                 <button class="btn ls-dark-btn ladda-button col-md-12 col-sm-12 col-xs-12" data-style="slide-down">
                                     <span class="ladda-label"><i class="fa fa-key"></i></span>
