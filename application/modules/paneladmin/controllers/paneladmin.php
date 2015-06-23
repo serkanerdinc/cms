@@ -7,12 +7,17 @@ class paneladmin extends MX_Controller {
 		parent::__construct();
 		$this->srkn_smarty->addTemplateDir(APPPATH.'modules/paneladmin/views/templates');
 		$this->srkn_smarty->setCompileDir(APPPATH.'modules/paneladmin/views/compiled');
+		
+		global $data;
+        
+        $data["nav1"] = $this->router->fetch_class();
+        $data["nav2"] = $this->router->fetch_method();
 	}
 	
 	public function index()
 	{
-		
-		echo $this->srkn_smarty->fetch("home.tpl");
+		global $data;
+		echo $this->srkn_smarty->fetch("admin/home.tpl",$data);
 	}
 	
 	public function sil($id)
@@ -55,7 +60,7 @@ class paneladmin extends MX_Controller {
 	public function logout()
 	{
 		$this->session->sess_destroy();
-		go(base_url()."admin/");
+		go(base_url()."paneladmin/login");
 	}
 	
 	
