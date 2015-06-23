@@ -34,6 +34,10 @@
 			
 		}
 		
+		public function logout()
+		{
+			$this->session->destroy();
+		}
 		
 	}
 ?>
