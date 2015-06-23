@@ -12,7 +12,7 @@ class paneladmin extends MX_Controller {
 	public function index()
 	{
 		
-		echo $this->srkn_smarty->fetch("home.tpl");
+		echo $this->srkn_smarty->fetch("admin/home.tpl");
 	}
 	
 	public function sil($id)
