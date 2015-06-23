@@ -1,5 +1,5 @@
 <?php
-/*%%SmartyHeaderCode:26032558836598cb9f6_32652349%%*/
+/*%%SmartyHeaderCode:26917558823cc9b37e7_26242275%%*/
 if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
@@ -7,22 +7,22 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '91fea9a7b28f8b58e75c397fb59aabfc707ed95b' => 
     array (
       0 => 'C:/wamp/www/cms/application/modules/paneladmin/views/templates/login.tpl',
-      1 => 1434989751,
+      1 => 1434985323,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '26032558836598cb9f6_32652349',
+  'nocache_hash' => '26917558823cc9b37e7_26242275',
   'tpl_function' => 
   array (
   ),
   'has_nocache_code' => false,
   'version' => '3.1.24',
-  'unifunc' => 'content_55883659b90ef5_35153155',
+  'unifunc' => 'content_558823ccaccc29_76946517',
   'cache_lifetime' => 120,
 ),true);
 /*/%%SmartyHeaderCode%%*/
-if ($_valid && !is_callable('content_55883659b90ef5_35153155')) {
-function content_55883659b90ef5_35153155 ($_smarty_tpl) {
+if ($_valid && !is_callable('content_558823ccaccc29_76946517')) {
+function content_558823ccaccc29_76946517 ($_smarty_tpl) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
