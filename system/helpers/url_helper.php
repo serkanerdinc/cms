@@ -463,44 +463,53 @@ if ( ! function_exists('prep_url'))
 
 if ( ! function_exists('url_title'))
 {
-	/**
-	 * Create URL Title
-	 *
-	 * Takes a "title" string as input and creates a
-	 * human-friendly URL string with a "separator" string
-	 * as the word separator.
-	 *
-	 * @todo	Remove old 'dash' and 'underscore' usage in 3.1+.
-	 * @param	string	$str		Input string
-	 * @param	string	$separator	Word separator
-	 *			(usually '-' or '_')
-	 * @param	bool	$lowercase	Whether to transform the output string to lowercase
-	 * @return	string
-	 */
 	function url_title($str, $separator = '-', $lowercase = FALSE)
 	{
-		if ($separator === 'dash')
+		$str=strtolower($str);
+		$bul=array('a','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я','А','Б','В','Г','Д','Е','Ё','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ъ','Ы','Ь','Э','Ю','Я','№',' ','&','/','"','\'','а','ë','İ','—','&#39;','&#34;','&#42;','&#61;','#39;','#34;','#42;','#61;','#45;');
+		$degis=array('a','b','v','g','d','e','yo','zh','z','i','j','k','l','m','n','o','p','r','s','t','u','f','x','cz','ch','sh','shh','-','y','-','eh','yu','ya','a','b','v','g','d','e','yo','zh','z','i','j','k','l','m','n','o','p','r','s','t','u','f','x','cz','ch','sh','shh','-','y','-','eh','yu','ya','-','-','-','-','-','-','a','e','i','-','-','-','-','-','-','-','-','-','-');
+		$str=str_replace($bul,$degis,$str);
+		
+		if ($separator == 'dash') 
 		{
-			$separator = '-';
+		    $separator = '-';
 		}
-		elseif ($separator === 'underscore')
+		else if ($separator == 'underscore')
 		{
-			$separator = '_';
+		    $separator = '_';
 		}
-
-		$q_separator = preg_quote($separator, '#');
+		
+		$q_separator = preg_quote($separator);
 
 		$trans = array(
-			'&.+?;'			=> '',
-			'[^a-z0-9 _-]'		=> '',
-			'\s+'			=> $separator,
-			'('.$q_separator.')+'	=> $separator
+			','                 	=> '-',
+			' '                 	=> '-',
+			'_'                 	=> '-',
+			'Ə'                 	=> 'e',
+			'ə'                 	=> 'e',
+			'İ'                 	=> 'i',
+			'ı'                 	=> 'i',
+			'Ö'                 	=> 'o',
+			'ö'                 	=> 'o',
+			'Ü'                 	=> 'u',
+			'ü'                 	=> 'u',
+			'Ş'                 	=> 's',
+			'ş'                 	=> 's',
+			'Ç'                 	=> 'c',
+			'ç'                 	=> 'c',
+			'ğ'                 	=> 'g',
+			'&.+?;'                 => '',
+			'[^a-z0-9 _-]'          => '',
+			
+			'\s+'                   => $separator,
+			'('.$q_separator.')+'   => $separator
 		);
 
 		$str = strip_tags($str);
+
 		foreach ($trans as $key => $val)
 		{
-			$str = preg_replace('#'.$key.'#i', $val, $str);
+			$str = preg_replace("#".$key."#i", $val, $str);
 		}
 
 		if ($lowercase === TRUE)
@@ -508,7 +517,7 @@ if ( ! function_exists('url_title'))
 			$str = strtolower($str);
 		}
 
-		return trim(trim($str, $separator));
+		return trim($str, $separator);
 	}
 }
 

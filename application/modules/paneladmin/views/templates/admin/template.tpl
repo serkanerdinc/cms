@@ -25,7 +25,7 @@
     <!-- TODO: Add a favicon -->
     <link rel="shortcut icon" href="/admin/assets/images/ico/fab.ico">
 
-    <title>Fickle - Dashboard</title>
+    <title>CMS - Dashboard</title>
 
     <!--Page loading plugin Start -->
     <link rel="stylesheet" href="/admin/assets/css/plugins/pace.css">
@@ -73,8 +73,8 @@
     <div class="container-fluid">
         <!--Logo text start-->
         <div class="header-logo">
-            <a href="index.html" title="">
-                <h1>Fickle</h1>
+            <a href="/paneladmin" title="">
+                <h1>CMS</h1>
             </a>
         </div>
         <!--Logo text End-->

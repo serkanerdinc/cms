@@ -29,20 +29,20 @@
 
     <!--Left navigation start-->
     <ul class="mainNav">
-        <li class="active">
-            <a class="active" href="index.html">
+        <li {%if ($nav1=="paneladmin")%}class="active"{%/if%}>
+            <a {%if ($nav1=="paneladmin")%}class="active"{%/if%} href="/paneladmin">
                 <i class="fa fa-dashboard"></i> <span>Kontrol Paneli</span>
             </a>
         </li>
-        <li>
+        <li {%if ($nav1=="page")%}class="active"{%/if%}>
             <a href="#">
                 <i class="fa fa-list-alt"></i> <span>Sayfalar</span>
             </a>
             <ul>
                 <li><a href="#l">Sayfa Ekle </a></li>
                 <li><a href="#">Tüm Sayfalar </a></li>
-                <li><a href="#">Kategoriler </a></li>
-                <li><a href="#">Etiketler </a></li>
+                <li><a href="/paneladmin/page/category" {%if ($nav2=="category")%}class="active"{%/if%}>Kategoriler </a></li>
+                <li><a href="#" {%if ($nav2=="tag")%}class="active"{%/if%}>Etiketler </a></li>
             </ul>
         </li>
         <li>
