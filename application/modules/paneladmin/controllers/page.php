@@ -23,7 +23,8 @@ class page extends MX_Controller {
 
     public function add()
     {
-
+    	global $data;
+		echo $this->srkn_smarty->fetch("admin/page/pageadd.tpl",$data);
     }
 
     public function delete()
@@ -31,21 +32,49 @@ class page extends MX_Controller {
 
     }
 
-    public function category()
+    public function terms($type="category")
     {
         global $data;
+        if ($type=="category") $TermType = 1;
+        else if ($type=="tag") $TermType = 2;
         if ($this->input->post())
         {
-        	$term_id = $this->page_model->TermSave($this->input->post(),1);  
-        	if ($term_id>0) redirect("/paneladmin/page/category");
+        	$term_id = $this->page_model->TermSave($this->input->post(),$TermType);  
+        	if ($term_id>0) redirect("/paneladmin/page/terms/".$type);
         }
-
-        echo $this->srkn_smarty->fetch("admin/page/category.tpl",$data);
+		
+		$data["Terms"] = $this->page_model->TermsGet($TermType);
+		$data["TermType"] = $TermType;
+        $data["nav2"] = $type;
+        
+        echo $this->srkn_smarty->fetch("admin/page/terms.tpl",$data);
     }
 
-    public function tag()
+    public function termsedit($type,$term_id)
     {
-
+		global $data;
+        if ($type=="category") $TermType = 1;
+        else if ($type=="tag") $TermType = 2;
+        if ($this->input->post())
+        {
+        	$TT = $this->page_model->TermSave($this->input->post(),$TermType,$term_id);  
+        	if ($TT) redirect("/paneladmin/page/terms/".$type);
+        }
+		
+		$data["Term"] = $this->page_model->TGet($TermType,$term_id);
+		$data["Terms"] = $this->page_model->TermsGet($TermType);
+		$data["TermType"] = $TermType;
+        $data["nav2"] = $type;
+        
+        echo $this->srkn_smarty->fetch("admin/page/termsedit.tpl",$data);
+    }
+    
+    public function termsdelete($type,$term_id)
+    {
+    	if ($type=="category") $TermType = 1;
+        else if ($type=="tag") $TermType = 2;
+		$this->page_model->TermDelete($TermType,$term_id);  
+		redirect("/paneladmin/page/terms/".$type);
     }
 
 }

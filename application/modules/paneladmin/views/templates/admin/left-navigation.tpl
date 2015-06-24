@@ -41,8 +41,8 @@
             <ul>
                 <li><a href="#l">Sayfa Ekle </a></li>
                 <li><a href="#">Tüm Sayfalar </a></li>
-                <li><a href="/paneladmin/page/category" {%if ($nav2=="category")%}class="active"{%/if%}>Kategoriler </a></li>
-                <li><a href="#" {%if ($nav2=="tag")%}class="active"{%/if%}>Etiketler </a></li>
+                <li><a href="/paneladmin/page/terms/category" {%if ($nav2=="category")%}class="active"{%/if%}>Kategoriler </a></li>
+                <li><a href="/paneladmin/page/terms/tag" {%if ($nav2=="tag")%}class="active"{%/if%}>Etiketler </a></li>
             </ul>
         </li>
         <li>
