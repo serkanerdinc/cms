@@ -216,10 +216,6 @@
     <!--Page main section end -->
     <!--Right hidden  section start-->
 
-        <!--Tab content -->
-    </section>
-    <!--Right hidden  section end -->
-
 </section>
 
 <!--Layout Script start -->
@@ -277,6 +273,22 @@
 <!--AmaranJS library script Start -->
 <script src="/admin/assets/js/jquery.amaran.js"></script>
 <!--AmaranJS library script End   -->
+<link href="/admin/assets/css/jquery.tagsinput.css" rel="stylesheet" />
+<script src="/admin/assets/js/jquery.tagsinput.min.js"></script>
+<script>
+	$(function(){
+
+		$('#tags').tagsInput({
+		    	"width": "100%",
+		    	"height": "200px"
+		});	
+		$('#tags').focus();
+	});
+	
+	
+</script>
 <script src="/admin/assets/js/pages/dashboard.js"></script>
+
+
 </body>
 </html>

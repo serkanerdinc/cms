@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-12">
         <!--Top header start-->
-        <h3 class="ls-top-header">Kategoriler</h3>
+        <h3 class="ls-top-header">Sayfa Ekle</h3>
         <!--Top header end -->
 
         <!--Top breadcrumb start -->
@@ -19,17 +19,17 @@
 
 
 <div class="row home-row-top">
+<form role="form" class="ls_form" method="post">
     <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Yeni Sayfa Ekle</h3>
             </div>
             <div class="panel-body">
-            	<form role="form" class="ls_form" method="post">
                     <div class="form-group">
                         <label>Adı</label>
                         <input type="text" placeholder="Adı" value="" name="name" class="form-control">
-                    	<b>Slug:</b> http://www.pratiktariflerim.com/<input type="text"  value="slug" name="slug" width="40px" >.html
+                    	<b>Slug:</b> http://www.pratiktariflerim.com/<span id="slug" style="font-weight: bold">slug</span>.html
                     </div>
                     <div class="form-group">
                         <label>Description</label>
@@ -42,13 +42,71 @@
                     <div class="form-group">
                         <textarea class="ckeditor" id="editor1" style="width: 100%; height: 250px;" name="content"></textarea>
                     </div>
-                    
-                </form>
             </div>
 		</div>
     </div>
     <div class="col-md-3">
-    	<div class="row">
+    	
+		<div class="row">
+    	
+    		<div class="col-md-12">
+	       		<div class="panel panel-default">
+		            <div class="panel-heading">
+		                <h3 class="panel-title">Kategoriler</h3>
+		            </div>
+		            <div class="panel-body" style="overflow:auto;  max-height: 200px ">
+		            	<div style="margin-left: 15px;">
+			            	{%$pre=0%}
+	                        {%function name=termsOpt prefix=0%}
+								{%foreach from=$data  item=cat%}
+									{%if $cat.parent==0 %}{%$pre=0%}{%/if%}
+			            			<label class="checkbox" style="margin-left: {%$prefix%}px"><input type="checkbox" id="term_category[]" value="{%$cat.term_id%}">{%$cat.name%}</label>
+									{%$pre=$pre+15%}
+			                        {%if (count($Terms["Category"][$cat.term_id])>0)%}
+			                        	{%termsOpt data=$Terms["Category"][$cat.term_id]  prefix=$pre%}
+			                        {%/if%}
+								{%/foreach%}
+							{%/function%}
+							
+	                       	{%termsOpt data=$Terms["Category"][0]%}
+		            	</div>
+		            </div>
+				</div>
+    	
+    		</div>
+		
+		</div>
+		<div class="row">
+    		<div class="col-md-12">
+	       		<div class="panel panel-default">
+		            <div class="panel-heading">
+		                <h3 class="panel-title">Etiketler</h3>
+		            </div>
+		            <div class="panel-body">
+		            	<input type="text" name="tags" id="tags" class="form-control"  autofocus="" value="">
+		            </div>
+				</div>
+    	
+    		</div>
+		
+		</div>
+		
+		<div class="row">
+    		<div class="col-md-12">
+	       		<div class="panel panel-default">
+		            <div class="panel-heading">
+		                <h3 class="panel-title">Sayfa Resmi</h3>
+		            </div>
+		            <div class="panel-body">
+		            	<input type="file" name="image" value="Dosya Seç">
+		            </div>
+				</div>
+    	
+    		</div>
+		
+		</div>
+		
+		<div class="row">
     	
     		<div class="col-md-12">
 	       		<div class="panel panel-default">
@@ -66,52 +124,11 @@
     		</div>
 		
 		</div>
-		<div class="row">
-    	
-    		<div class="col-md-12">
-	       		<div class="panel panel-default">
-		            <div class="panel-heading">
-		                <h3 class="panel-title">Kategoriler</h3>
-		            </div>
-		            <div class="panel-body">
-		            	
-		            	
-		            </div>
-				</div>
-    	
-    		</div>
-		
-		</div>
-		<div class="row">
-    		<div class="col-md-12">
-	       		<div class="panel panel-default">
-		            <div class="panel-heading">
-		                <h3 class="panel-title">Etiketler</h3>
-		            </div>
-		            <div class="panel-body">
-		            </div>
-				</div>
-    	
-    		</div>
-		
-		</div>
-		
-		<div class="row">
-    		<div class="col-md-12">
-	       		<div class="panel panel-default">
-		            <div class="panel-heading">
-		                <h3 class="panel-title">Sayfa Resmi</h3>
-		            </div>
-		            <div class="panel-body">
-		            </div>
-				</div>
-    	
-    		</div>
-		
-		</div>
     </div>
+</form>
 </div>
 <script src="/admin/ckeditor/ckeditor.js" type="text/javascript" charset="utf-8"></script>
 <script src="/admin/ckeditor/samples/sample.js" type="text/javascript" charset="utf-8"></script>
 <!-- Main Content Element  End-->
+
 {%/block%}

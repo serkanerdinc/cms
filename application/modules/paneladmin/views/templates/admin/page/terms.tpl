@@ -42,6 +42,7 @@
                             {%$pre=""%}
 	                        {%function name=termsOpt prefix=''%}
 								{%foreach from=$data  item=cat%}
+									{%if $cat.parent==0 %}{%$pre=''%}{%/if%}
 									<option value="{%$cat.term_id%}">{%$prefix%} {%$cat.name%}</option>
 									{%assign var='pre' value="$pre--|"%}
 			                        {%if (count($Terms[$cat.term_id])>0)%}
@@ -90,8 +91,8 @@
                         <tbody>
                         {%$pre=""%}
                         {%function name=terms prefix=''%}
-                        	
 							{%foreach from=$data  item=term%}
+                        		{%if $term.parent==0 %}{%$pre=''%}{%/if%}
 								<tr id="term{%$term.term_id%}" >
 		                            <td>{%$term.term_id%}</td>
 		                            <td>

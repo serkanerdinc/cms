@@ -24,6 +24,8 @@ class page extends MX_Controller {
     public function add()
     {
     	global $data;
+    	$data["Terms"]["Category"] = $this->page_model->TermsGet(1);
+    	
 		echo $this->srkn_smarty->fetch("admin/page/pageadd.tpl",$data);
     }
 
@@ -75,6 +77,12 @@ class page extends MX_Controller {
         else if ($type=="tag") $TermType = 2;
 		$this->page_model->TermDelete($TermType,$term_id);  
 		redirect("/paneladmin/page/terms/".$type);
+    }
+
+    public function tagget($AuthorName)
+    {
+    	$t = $this->input->post("tag");
+    	echo "asd".$AuthorName."-".$t;
     }
 
 }
