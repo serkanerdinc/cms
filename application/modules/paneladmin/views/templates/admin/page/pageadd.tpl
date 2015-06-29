@@ -29,7 +29,8 @@
                     <div class="form-group">
                         <label>Adı</label>
                         <input type="text" placeholder="Adı" value="" name="name" class="form-control">
-                    	<b>Slug:</b> http://www.pratiktariflerim.com/<span id="slug" style="font-weight: bold">slug</span>.html
+                    	<b>Slug:</b><div id="slug-permalink" >http://www.pratiktariflerim.com/<input type="text" id="page-slug" value=""  placeholder="slug">.html</div>
+                    	<input type="hidden" id="slugtype" value="0"/>
                     </div>
                     <div class="form-group">
                         <label>Description</label>
@@ -130,5 +131,5 @@
 <script src="/admin/ckeditor/ckeditor.js" type="text/javascript" charset="utf-8"></script>
 <script src="/admin/ckeditor/samples/sample.js" type="text/javascript" charset="utf-8"></script>
 <!-- Main Content Element  End-->
-
 {%/block%}
+
