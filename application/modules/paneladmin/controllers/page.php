@@ -26,6 +26,14 @@ class page extends MX_Controller {
     	global $data;
     	$data["Terms"]["Category"] = $this->page_model->TermsGet(1);
     	
+    	//Postta veri varsa burası çalışacak
+    	if ($this->input->post())
+        {
+        	$post_id = $this->page_model->PostSave($this->input->post());  
+        	
+        }
+    	
+    	
 		echo $this->srkn_smarty->fetch("admin/page/pageadd.tpl",$data);
     }
 

@@ -513,7 +513,7 @@ class CI_Upload {
 
 		// Sanitize the file name for security
 		$this->file_name = $this->_CI->security->sanitize_filename($this->file_name);
-
+		
 		// Truncate the file name if it's too long
 		if ($this->max_filename > 0)
 		{
@@ -666,9 +666,9 @@ class CI_Upload {
 		$new_filename = '';
 		for ($i = 1; $i < $this->max_filename_increment; $i++)
 		{
-			if ( ! file_exists($path.$filename.$i.$this->file_ext))
+			if ( ! file_exists($path.$filename."-".$i.$this->file_ext))
 			{
-				$new_filename = $filename.$i.$this->file_ext;
+				$new_filename = $filename."-".$i.$this->file_ext;
 				break;
 			}
 		}

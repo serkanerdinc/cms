@@ -19,7 +19,7 @@
 
 
 <div class="row home-row-top">
-<form role="form" class="ls_form" method="post">
+<form role="form" class="ls_form" method="post" enctype="multipart/form-data">
     <div class="col-md-9">
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -29,8 +29,7 @@
                     <div class="form-group">
                         <label>Adı</label>
                         <input type="text" placeholder="Adı" value="" name="name" class="form-control">
-                    	<b>Slug:</b><div id="slug-permalink" >http://www.pratiktariflerim.com/<input type="text" id="page-slug" value=""  placeholder="slug">.html</div>
-                    	<input type="hidden" id="slugtype" value="0"/>
+                    	<b>Slug:</b><div id="slug-permalink" >http://www.pratiktariflerim.com/<input type="text" id="page-slug" name="page-slug" value=""  placeholder="slug">.html</div>
                     </div>
                     <div class="form-group">
                         <label>Description</label>
@@ -61,7 +60,7 @@
 	                        {%function name=termsOpt prefix=0%}
 								{%foreach from=$data  item=cat%}
 									{%if $cat.parent==0 %}{%$pre=0%}{%/if%}
-			            			<label class="checkbox" style="margin-left: {%$prefix%}px"><input type="checkbox" id="term_category[]" value="{%$cat.term_id%}">{%$cat.name%}</label>
+			            			<label class="checkbox" style="margin-left: {%$prefix%}px"><input type="checkbox" id="term_category[]" name="term_category[]" value="{%$cat.term_id%}">{%$cat.name%}</label>
 									{%$pre=$pre+15%}
 			                        {%if (count($Terms["Category"][$cat.term_id])>0)%}
 			                        	{%termsOpt data=$Terms["Category"][$cat.term_id]  prefix=$pre%}
