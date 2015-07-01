@@ -1,12 +1,48 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class page_model extends CI_Model {
-
+	
+	//Sayfaları listeleme
+	public function PostList($page_id="")
+	{
+		$this->db->select("*")->from("pages");
+		if ($page_id!="")
+		{
+			$where["page_id"] = $page_id;
+			$this->db->where($where);
+		}
+		$query = $this->db->get();
+		$data = $query->result_array();
+		foreach($data as $key => $value){
+			$twhere["page_id"] = $value["page_id"];
+			$this->db->select("*")->from("page_term")->where($twhere);
+			$query = $this->db->get();
+			$datax 	= $query->result_array();
+			foreach($datax as $k => $term){
+				if ($term["type"]=="tag")
+				{
+					$ttag = $this->TGet("2",$term["term_id"]);
+					$tname = $ttag["name"];
+					$data[$key]["etiketler"] .= $tname.",";				
+				}
+				else if($term["type"]=="category")
+				{
+					$tcat = $this->TGet("1",$term["term_id"]);
+					$tname = $tcat["name"];
+					$data[$key]["kategoriler"] .= $tname.",";	
+				}
+			}
+		}
+		
+		return $data;
+	}
+	
+	
 	//Sayfa Verilerini Kaydetme ve Düzenleme
     public function PostSave($data,$term_id="")
     {
     	//veriler page olarak ekleniyor
-		$veri["title"] 		= $data["name"];
+		$veri["title"] 		= $data["title"];
 		$veri["description"]= $data["description"];
 		$veri["keywords"] 	= $data["keywords"];
 		$veri["content"] 	= $data["content"]; 
@@ -14,7 +50,7 @@ class page_model extends CI_Model {
 		$veri["is_active"] 	= 1;
 		$veri["language"] 	= "tr";
     	
-		$data["page-slug"] == "" ? $veri["slug"] = url_title($data["name"]) : $veri["slug"] = $data["page-slug"];
+		$data["page-slug"] == "" ? $veri["slug"] = url_title($data["title"]) : $veri["slug"] = $data["page-slug"];
 	
     	if($this->db->insert("pages",$veri)) 
 			$page_id = $this->db->insert_id();
@@ -64,7 +100,7 @@ class page_model extends CI_Model {
 		//Sayfa resmini buraya ekliyoruz
 		$config['upload_path'] = 'images/page-image/'; 
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
-		$config['file_name'] = url_title($data["name"]); 
+		$config['file_name'] = url_title($data["title"]); 
 			
 		$this->load->library('upload', $config);
 		if ($this->upload->do_upload("image"))

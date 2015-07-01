@@ -28,7 +28,7 @@
             <div class="panel-body">
                     <div class="form-group">
                         <label>Adı</label>
-                        <input type="text" placeholder="Adı" value="" name="name" class="form-control">
+                        <input type="text" placeholder="Adı" value="" id="title" name="title" class="form-control">
                     	<b>Slug:</b><div id="slug-permalink" >http://www.pratiktariflerim.com/<input type="text" id="page-slug" name="page-slug" value=""  placeholder="slug">.html</div>
                     </div>
                     <div class="form-group">
@@ -132,3 +132,20 @@
 <!-- Main Content Element  End-->
 {%/block%}
 
+{%block name=script%}
+	<script>
+		$("#title").change(function(){
+			if ($("#page-slug").val()=="")
+			{
+				$.ajax({ 
+					type: "POST", 
+					url: "/paneladmin/page/urltitle", 
+					data: "title="+ $("#title").val(), 
+					success: function(slug){ 
+						$("#page-slug").val(slug);
+					}
+				});
+			}	
+		});
+	</script>
+{%/block%}

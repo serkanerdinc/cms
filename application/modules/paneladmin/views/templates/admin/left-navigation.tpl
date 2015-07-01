@@ -40,7 +40,7 @@
             </a>
             <ul>
                 <li><a href="/paneladmin/page/add">Sayfa Ekle </a></li>
-                <li><a href="#">Tüm Sayfalar </a></li>
+                <li><a href="/paneladmin/page/lists">Tüm Sayfalar </a></li>
                 <li><a href="/paneladmin/page/terms/category" {%if ($nav2=="category")%}class="active"{%/if%}>Kategoriler </a></li>
                 <li><a href="/paneladmin/page/terms/tag" {%if ($nav2=="tag")%}class="active"{%/if%}>Etiketler </a></li>
             </ul>

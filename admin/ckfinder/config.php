@@ -80,7 +80,7 @@ Examples:
 ATTENTION: The trailing slash is required.
 */
 //$baseDir = resolveUrl($baseUrl);
-$baseDir = "/home/dragonmakinacom/public_html/";
+$baseDir = $_SERVER["DOCUMENT_ROOT"]."/";
 /*
  * ### Advanced Settings
  */
@@ -90,12 +90,12 @@ Thumbnails : thumbnails settings. All thumbnails will end up in the same
 directory, no matter the resource type.
 */
 $config['Thumbnails'] = Array(
-		'url' => $baseUrl . '_thumbs',
-		'directory' => $baseDir . '_thumbs',
+		'url' => $baseUrl . 'images/uploads/_kucuk/',
+		'directory' => $baseDir . 'images/uploads/_kucuk/',
 		'enabled' => true,
 		'directAccess' => false,
-		'maxWidth' => 100,
-		'maxHeight' => 100,
+		'maxWidth' => 150,
+		'maxHeight' => 150,
 		'bmpSupported' => false,
 		'quality' => 80);
 
@@ -104,9 +104,9 @@ Set the maximum size of uploaded images. If an uploaded image is larger, it
 gets scaled down proportionally. Set to 0 to disable this feature.
 */
 $config['Images'] = Array(
-		'maxWidth' => 1600,
-		'maxHeight' => 1200,
-		'quality' => 80);
+		'maxWidth' => 1280,
+		'maxHeight' => 768,
+		'quality' => 100);
 
 /*
 RoleSessionVar : the session variable name that CKFinder must use to retrieve
@@ -196,8 +196,8 @@ $config['ResourceType'][] = Array(
 
 $config['ResourceType'][] = Array(
 		'name' => 'Images',
-		'url' => $baseUrl . 'images',
-		'directory' => $baseDir . 'images',
+		'url' => $baseUrl . 'images/uploads',
+		'directory' => $baseDir . 'images/uploads',
 		'maxSize' => 0,
 		'allowedExtensions' => 'bmp,gif,jpeg,jpg,png',
 		'deniedExtensions' => '');

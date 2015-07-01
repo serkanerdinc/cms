@@ -36,6 +36,14 @@ class page extends MX_Controller {
     	
 		echo $this->srkn_smarty->fetch("admin/page/pageadd.tpl",$data);
     }
+    
+    public function lists()
+    {
+    	global $data;
+    	
+    	$data["pages"] = $this->page_model->PostList();
+		echo $this->srkn_smarty->fetch("admin/page/pagelist.tpl",$data);
+    }
 
     public function delete()
     {
@@ -92,5 +100,11 @@ class page extends MX_Controller {
     	$t = $this->input->post("tag");
     	echo "asd".$AuthorName."-".$t;
     }
+    
+    public function urltitle()
+    {
+		$title = url_title($this->input->post("title"));
+		echo $title;
+	}
 
 }

@@ -6,7 +6,7 @@ RewriteRule ^theme/(.*)/fonts/(.*)$ application/views/templates/$1/fonts/$2 [L]
 RewriteRule ^theme/(.*)/demo/(.*)$ application/views/templates/$1/demo/$2 [L] 
 RewriteRule ^theme/(.*)/js/(.*)$ application/views/templates/$1/js/$2 [L]
 
-RewriteCond $1 !^(index.php|application|robots.txt|system|admin)
+RewriteCond $1 !^(index.php|application|robots.txt|system|admin|images)
 RewriteRule ^(.*)$ index.php?/$1 [L] 
 
 RewriteCond %{HTTP_REFERER} .*adf.ly.*$ [NC,OR]
