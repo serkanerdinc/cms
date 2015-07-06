@@ -30,6 +30,7 @@ class page_model extends CI_Model {
 					$tcat = $this->TGet("1",$term["term_id"]);
 					$tname = $tcat["name"];
 					$data[$key]["kategoriler"] .= $tname.",";	
+					$data[$key]["cats"][$tcat["term_id"]] = "checked";
 				}
 			}
 		}
@@ -39,7 +40,7 @@ class page_model extends CI_Model {
 	
 	
 	//Sayfa Verilerini Kaydetme ve Düzenleme
-    public function PostSave($data,$term_id="")
+    public function PostSave($data,$page_id="")
     {
     	//veriler page olarak ekleniyor
 		$veri["title"] 		= $data["title"];
@@ -51,17 +52,26 @@ class page_model extends CI_Model {
 		$veri["language"] 	= "tr";
     	
 		$data["page-slug"] == "" ? $veri["slug"] = url_title($data["title"]) : $veri["slug"] = $data["page-slug"];
-	
-    	if($this->db->insert("pages",$veri)) 
-			$page_id = $this->db->insert_id();
-    	
+		
+		if ($page_id=="")
+    	{
+			if($this->db->insert("pages",$veri)) 
+			$page_id = $this->db->insert_id();	
+		}
+		else
+		{
+			$this->db->where("page_id",$page_id);
+			$this->db->update("pages",$veri);
+		}
     	/////
     	
 		//category ile sayfa birbirine eşleştiriliyoruz
+		$this->db->delete("page_term",array('page_id' => $page_id));
     	foreach($data["term_category"] as $key => $value){
 			$tcat["page_id"] 	= $page_id;
 			$tcat["term_id"] 	= $value;
 			$tcat["type"] 		= "category";
+			
     		$this->db->insert("page_term",$tcat);
 			
 			//category eklemeden sonra count değerini 1 arttırıyruz
@@ -113,11 +123,12 @@ class page_model extends CI_Model {
 			$configx['allowed_types'] = 'gif|jpg|png|jpeg';
 			$configx['width'] = 250;
 			$configx['quality'] = 100;
-			$configx['new_image'] = "images/page-image/kucuk/". url_title($data["title"]); ;
+			$configx['new_image'] = "images/page-image/kucuk/". $this->upload->file_name ;
 			
 	 	    $this->load->library('image_lib');
 			$this->image_lib->initialize($configx);
 	        $this->image_lib->resize();	
+	        echo $this->image_lib->display_errors();
 	        $this->db->update("pages",array("resim"=>$resim),array("page_id"=>$page_id));
 		}
 		
@@ -199,6 +210,21 @@ class page_model extends CI_Model {
 		$veri = $query->result_array();
 		return $veri;
 		
+	}
+	
+	
+	public function SlugControl($slug="",$say=1)
+	{
+		while($say>0){
+			$say==1 ? $saysql = "" : $saysql = "-".$say;
+			$query = $this->db->query("SELECT count(0) say FROM pages WHERE slug='".$slug.$saysql."'");
+			$kk = $query->result_array();
+			if ($kk[0]["say"]>0)
+				$say++;
+			else
+				$say = 0;
+		}
+		return $slug.$saysql;
 	}
 
 
