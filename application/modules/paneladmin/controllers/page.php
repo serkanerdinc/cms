@@ -21,7 +21,7 @@ class page extends MX_Controller {
 
     }
 
-    public function add()
+    public function add($page_id="")
     {
     	global $data;
     	$data["Terms"]["Category"] = $this->page_model->TermsGet(1);
@@ -29,14 +29,22 @@ class page extends MX_Controller {
     	//Postta veri varsa burası çalışacak
     	if ($this->input->post())
         {
-        	$post_id = $this->page_model->PostSave($this->input->post());  
-        	
+        	$post_id = $this->page_model->PostSave($this->input->post(),$page_id);  
+        	//redirect("paneladmin/page/lists");
         }
-    	
-    	
+		
+		//page_id dolu ise page_idsi eşit olan veri getirilecek
+		if ($page_id!="")
+		{
+			$data["page_id"] = $page_id;
+			$page = $this->page_model->PostList($page_id);
+			$data["page"] = $page[0];
+		}
+		
 		echo $this->srkn_smarty->fetch("admin/page/pageadd.tpl",$data);
     }
     
+
     public function lists()
     {
     	global $data;
@@ -105,6 +113,11 @@ class page extends MX_Controller {
     {
 		$title = url_title($this->input->post("title"));
 		echo $title;
+	}
+    public function slugcontrol()
+    {
+		$slug = $this->page_model->SlugControl($this->input->post("slug"));
+		echo $slug;
 	}
 
 }
