@@ -57,6 +57,7 @@ class paneladmin extends MX_Controller {
 		echo $this->srkn_smarty->fetch("adminlistele.tpl",$data);
 	}
 	
+	
 	public function logout()
 	{
 		$this->session->sess_destroy();

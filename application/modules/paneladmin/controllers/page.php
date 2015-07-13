@@ -20,7 +20,8 @@ class page extends MX_Controller {
     {
 
     }
-
+	
+	//Sayfa Ekleme ve Düzenleme sayfası
     public function add($page_id="")
     {
     	global $data;
@@ -44,7 +45,7 @@ class page extends MX_Controller {
 		echo $this->srkn_smarty->fetch("admin/page/pageadd.tpl",$data);
     }
     
-
+	//Sayfa Listeleme
     public function lists()
     {
     	global $data;
@@ -58,6 +59,7 @@ class page extends MX_Controller {
 
     }
 
+	//Tag,Category Listleme
     public function terms($type="category")
     {
         global $data;
@@ -75,7 +77,8 @@ class page extends MX_Controller {
         
         echo $this->srkn_smarty->fetch("admin/page/terms.tpl",$data);
     }
-
+	
+	//Tag,Category Düzenleme
     public function termsedit($type,$term_id)
     {
 		global $data;
@@ -95,6 +98,7 @@ class page extends MX_Controller {
         echo $this->srkn_smarty->fetch("admin/page/termsedit.tpl",$data);
     }
     
+    //Tag,Category Silme
     public function termsdelete($type,$term_id)
     {
     	if ($type=="category") $TermType = 1;
@@ -109,15 +113,31 @@ class page extends MX_Controller {
     	echo "asd".$AuthorName."-".$t;
     }
     
+    
+    //Seo Url Oluşturma
     public function urltitle()
     {
 		$title = url_title($this->input->post("title"));
 		echo $title;
 	}
+	
+	//Slug var mı yok mu kontrolü
     public function slugcontrol()
     {
 		$slug = $this->page_model->SlugControl($this->input->post("slug"));
 		echo $slug;
 	}
-
+	
+	//Menülerin Düzenlemesi
+    public function menu()
+    {
+    	global $data;
+    	
+    	if ($this->input->post())
+		{
+			$menu = $this->page_model->MenuParcala($this->input->post("serial"));
+			print_r($menu);
+		}
+		echo $this->srkn_smarty->fetch("admin/page/menu.tpl",$data);
+    }
 }

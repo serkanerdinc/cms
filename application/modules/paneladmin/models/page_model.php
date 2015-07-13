@@ -226,6 +226,16 @@ class page_model extends CI_Model {
 		}
 		return $slug.$saysql;
 	}
+	
+	public function MenuParcala($data)
+	{
+		preg_match_all('/{menu_id:(.*?),parent:(.*?),label:(.*?)}/s', $data, $m);
+		foreach($m[1] as $key => $value){
+			$menu[$value]["parent"] = $m[2][$key];	
+			$menu[$value]["label"] = $m[3][$key];	
+		}
+		return $menu;
+	}
 
 
 

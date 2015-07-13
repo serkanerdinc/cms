@@ -43,6 +43,7 @@
                 <li><a href="/paneladmin/page/lists">Tüm Sayfalar </a></li>
                 <li><a href="/paneladmin/page/terms/category" {%if ($nav2=="category")%}class="active"{%/if%}>Kategoriler </a></li>
                 <li><a href="/paneladmin/page/terms/tag" {%if ($nav2=="tag")%}class="active"{%/if%}>Etiketler </a></li>
+                <li><a href="/paneladmin/page/menu" {%if ($nav2=="menu")%}class="active"{%/if%}>Menüler </a></li>
             </ul>
         </li>
         <li>

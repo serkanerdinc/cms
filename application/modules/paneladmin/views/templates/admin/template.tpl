@@ -287,11 +287,11 @@
 	
 	
 </script>
-
-<script src="/admin/assets/js/pages/dashboard.js"></script>
+	
 {%block name=script%}
     Default Page Title
 {%/block%}
+<script src="/admin/assets/js/pages/dashboard.js"></script>
 
 </body>
 </html>
